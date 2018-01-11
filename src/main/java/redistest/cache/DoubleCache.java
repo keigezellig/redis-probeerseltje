@@ -1,25 +1,15 @@
 package redistest.cache;
 
-import redistest.cache.BaseCache;
-import redistest.cache.CacheProvider;
-
-import javax.annotation.PostConstruct;
 import java.text.DecimalFormat;
 
 public class DoubleCache extends BaseCache<Double, String> {
 
     private int accuracy;
 
-    public DoubleCache(CacheProvider cacheProvider) {
-        super(cacheProvider);
-    }
-
-    @PostConstruct
-    public void init() {
-        this.expirationTime = 600;
+    public DoubleCache(CacheProvider cacheProvider, int expirationTime) {
+        super(cacheProvider, expirationTime);
         this.accuracy = 5;
     }
-
 
     private DecimalFormat getDecimalFormat() {
         String formatString = "#.";

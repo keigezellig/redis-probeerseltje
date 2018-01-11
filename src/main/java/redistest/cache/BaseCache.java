@@ -5,8 +5,9 @@ public abstract class BaseCache<K, V> implements Cache<K,V>{
     private CacheProvider cacheProvider;
     protected int expirationTime;
 
-    protected BaseCache(CacheProvider cacheProvider) {
+    protected BaseCache(CacheProvider cacheProvider, int expirationTime) {
         this.cacheProvider = cacheProvider;
+        this.expirationTime = expirationTime;
     }
 
     @Override

@@ -2,15 +2,16 @@ package redistest;
 
 
 import redistest.cache.Cache;
+import redistest.cache.CacheFactory;
 import redistest.dataprovider.DescriptionProvider;
 
 public class NumberDescriptorImpl implements NumberDescriptor{
 
-    private Cache cache;
+    private Cache<Double, String> cache;
     private DescriptionProvider descriptionProvider;
 
-    public NumberDescriptorImpl(Cache cache, DescriptionProvider descriptionProvider) {
-        this.cache = cache;
+    public NumberDescriptorImpl(DescriptionProvider descriptionProvider) {
+        this.cache = CacheFactory.doubleCache();
         this.descriptionProvider = descriptionProvider;
     }
 

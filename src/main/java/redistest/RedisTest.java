@@ -21,7 +21,7 @@ public class RedisTest {
         locationCache.init();
         cache.init();
 
-        NumberDescriptor n = new NumberDescriptorImpl(cache, new DescriptionProvider());
+        NumberDescriptor n = new NumberDescriptorImpl(new DescriptionProvider());
         System.out.println(n.getDescriptionForNumber(1.33123));
         System.out.println(n.getDescriptionForNumber(1.33123));
         System.out.println(n.getDescriptionForNumber(1.33123));
@@ -37,7 +37,7 @@ public class RedisTest {
         System.out.println(n.getDescriptionForNumber(1.33125));
 
 
-        LocationService locationService = new LocationServiceImpl(locationCache, new LocationProvider());
+        LocationService locationService = new LocationServiceImpl(new LocationProvider());
         System.out.println(locationService.getLocation(new GeoPoint(52.23423432,8)));
         System.out.println(locationService.getLocation(new GeoPoint(52.23456722,8)));
         System.out.println(locationService.getLocation(new GeoPoint(52.23456733,8)));

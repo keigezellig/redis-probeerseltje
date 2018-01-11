@@ -1,16 +1,17 @@
 package redistest;
 
 import redistest.cache.Cache;
+import redistest.cache.CacheFactory;
 import redistest.dataobjects.GeoPoint;
 import redistest.dataprovider.LocationProvider;
 
 
 public class LocationServiceImpl implements LocationService {
-    private Cache cache;
+    private Cache<GeoPoint, String> cache;
     private LocationProvider locationProvider;
 
-    public LocationServiceImpl(Cache cache, LocationProvider locationProvider) {
-        this.cache = cache;
+    public LocationServiceImpl(LocationProvider locationProvider) {
+        this.cache = CacheFactory.locationCache();
         this.locationProvider = locationProvider;
     }
 
@@ -23,5 +24,6 @@ public class LocationServiceImpl implements LocationService {
         }
         return location;
     }
+
 
 }

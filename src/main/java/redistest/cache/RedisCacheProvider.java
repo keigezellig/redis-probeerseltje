@@ -12,6 +12,13 @@ public class RedisCacheProvider implements CacheProvider {
 
     private RedisClient redisClient;
 
+    public RedisCacheProvider(String redisUrl) {
+        System.out.println("Init");
+        RedisURI redisUri = RedisURI.Builder.redis("localhost") //todo: config
+                .build();
+        redisClient = RedisClient.create(redisUri);
+    }
+
     @PostConstruct
     public void init() {
         System.out.println("Init");
