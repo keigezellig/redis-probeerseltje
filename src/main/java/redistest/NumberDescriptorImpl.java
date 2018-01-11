@@ -1,6 +1,9 @@
 package redistest;
 
 
+import redistest.cache.Cache;
+import redistest.dataprovider.DescriptionProvider;
+
 public class NumberDescriptorImpl implements NumberDescriptor{
 
     private Cache cache;
@@ -20,7 +23,6 @@ public class NumberDescriptorImpl implements NumberDescriptor{
         else {
             System.out.println(String.format("Cache miss for %s", number));
             description = descriptionProvider.getDescriptionForNumber(number);
-            System.out.println("put it in the cache");
             cache.put(number, description);
         }
 
