@@ -16,12 +16,9 @@ public class NumberDescriptorImpl implements NumberDescriptor{
 
     @Override
     public String getDescriptionForNumber(double number) {
+
         String description = cache.get(number);
-        if (description != null) {
-            System.out.println(String.format("Cache hit for %s", number));
-        }
-        else {
-            System.out.println(String.format("Cache miss for %s", number));
+        if (description == null) {
             description = descriptionProvider.getDescriptionForNumber(number);
             cache.put(number, description);
         }

@@ -18,6 +18,7 @@ public class RedisCacheProvider implements CacheProvider {
         RedisURI redisUri = RedisURI.Builder.redis("localhost") //todo: config
                 .build();
         redisClient = RedisClient.create(redisUri);
+
     }
     @Override
     public String get(String key) {
@@ -25,6 +26,12 @@ public class RedisCacheProvider implements CacheProvider {
         try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {
             RedisCommands<String, String> syncCommands = connection.sync();
             result = syncCommands.get(key);
+        }
+
+        if (result != null) {
+            System.out.println(String.format("Cache hit for %s", key));
+        } else {
+            System.out.println(String.format("Cache miss for %s", key));
         }
         return result;
     }

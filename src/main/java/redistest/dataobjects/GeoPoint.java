@@ -1,6 +1,9 @@
 package redistest.dataobjects;
 
+import java.text.DecimalFormat;
+
 public class GeoPoint {
+    private static final int ACCURACY = 4;
     private double lat;
     private double lon;
 
@@ -12,7 +15,6 @@ public class GeoPoint {
     public double getLat() {
         return lat;
     }
-
     public double getLon() {
         return lon;
     }
@@ -41,9 +43,18 @@ public class GeoPoint {
 
     @Override
     public String toString() {
-        return "GeoPoint{" +
-                "lat=" + lat +
-                ", lon=" + lon +
-                '}';
+        DecimalFormat df = getDecimalFormat();
+
+        String lat = df.format(this.getLat());
+        String lon = df.format(this.getLon());
+        return String.format("%s,%s", lat, lon);
+    }
+
+    private DecimalFormat getDecimalFormat() {
+        String formatString = "#.";
+        for (int i = 0; i < ACCURACY; i++) {
+            formatString += "#";
+        }
+        return new DecimalFormat(formatString);
     }
 }

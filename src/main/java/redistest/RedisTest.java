@@ -2,6 +2,7 @@ package redistest;
 
 import redistest.cache.DoubleCache;
 import redistest.cache.LocationCache;
+import redistest.cache.NullCacheProvider;
 import redistest.cache.RedisCacheProvider;
 import redistest.dataobjects.GeoPoint;
 import redistest.dataprovider.DescriptionProvider;
@@ -11,11 +12,12 @@ public class RedisTest {
 
     public static void main(String[] args) {
 
-        RedisCacheProvider cacheProvider = new RedisCacheProvider();
-        cacheProvider.init();
+        RedisCacheProvider redisCacheProvider = new RedisCacheProvider();
+        NullCacheProvider nullCacheProvider = new NullCacheProvider();
+        redisCacheProvider.init();
 
-        DoubleCache cache = new DoubleCache(cacheProvider);
-        LocationCache locationCache = new LocationCache(cacheProvider);
+        DoubleCache cache = new DoubleCache(nullCacheProvider);
+        LocationCache locationCache = new LocationCache(redisCacheProvider);
         locationCache.init();
         cache.init();
 
@@ -43,7 +45,7 @@ public class RedisTest {
         System.out.println(locationService.getLocation(new GeoPoint(55,6)));
 
 
-        cacheProvider.destroy();
+        redisCacheProvider.destroy();
 
 
     }
